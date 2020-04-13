@@ -55,6 +55,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
+        //Ouverture de ma nouvelle activité au click sur le fragment de la liste
+        //Création d'un putExtra pour référencer les données d'un neighbour
         holder.mFragmentDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

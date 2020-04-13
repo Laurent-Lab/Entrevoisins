@@ -19,6 +19,7 @@ public class Details_Activity extends AppCompatActivity {
 
     private NeighbourApiService mApiService;
 
+    //Référencement des mes items
     ImageView               mDetailImage;
     ImageView               mImgAdress;
     ImageView               mImgTel;
@@ -32,7 +33,7 @@ public class Details_Activity extends AppCompatActivity {
     TextView                mDescriptionTitle;
     TextView                mDescription;
     FloatingActionButton    mFavoriteButton;
-
+    //Référencement d'une variable qui "contient" mes données
     Neighbour               mDetails;
 
 
@@ -44,7 +45,7 @@ public class Details_Activity extends AppCompatActivity {
 
 
 
-
+        //Référencement de mes items
         mDetailImage = findViewById(R.id.detail_img);
         mImgAdress = findViewById(R.id.img_adress);
         mImgTel = findViewById(R.id.img_tel);
@@ -59,7 +60,7 @@ public class Details_Activity extends AppCompatActivity {
         mDescription = findViewById(R.id.description);
         mFavoriteButton = findViewById(R.id.favorite_button);
 
-
+        //Récupération de mes données
         Intent intent = getIntent();
         mDetails = getIntent().getParcelableExtra("details");
 
@@ -69,12 +70,13 @@ public class Details_Activity extends AppCompatActivity {
         mDetailTitle1.setText(mDetails.getName());
         mDescription.setText(mDetails.getAboutMe());
 
+        //Récupération de l'image avec Glide
         Glide.with(this).load(mDetails.getAvatarUrl()).into(mDetailImage);
 
 
 
 
-
+        //Utilisation du bouton back pour revenir sur l'activity précédente (terminer l'activité en cours)
         mButtonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

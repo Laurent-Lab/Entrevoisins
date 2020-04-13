@@ -33,7 +33,9 @@ public class NeighbourFragment extends Fragment {
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
+
     public static NeighbourFragment newInstance() {
+
         NeighbourFragment fragment = new NeighbourFragment();
         return fragment;
     }

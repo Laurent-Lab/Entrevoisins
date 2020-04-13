@@ -8,6 +8,7 @@ import java.util.Objects;
 /**
  * Model object representing a Neighbour
  */
+// Implémentation d'un parcelable pour récupérer les données plus tard
 public class Neighbour implements Parcelable {
 
     /** Identifier */
@@ -44,6 +45,7 @@ public class Neighbour implements Parcelable {
         this.aboutMe = aboutMe;
     }
 
+    //Création de parcel
     private Neighbour(Parcel in) {
         id = in.readLong();
         name = in.readString();
