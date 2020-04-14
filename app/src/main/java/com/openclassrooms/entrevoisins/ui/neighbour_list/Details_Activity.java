@@ -91,7 +91,7 @@ public class Details_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                fNeighbours = mApiService.addFavorisNeighbour();
+                fNeighbours = mApiService.addFavorisNeighbour(neighbours);
                 mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(fNeighbours));
 
             }
