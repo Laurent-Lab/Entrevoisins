@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,12 +13,23 @@ import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
+import java.util.EventListener;
+import java.util.List;
+
+import butterknife.OnClick;
+
 public class Details_Activity extends AppCompatActivity {
 
+    ///
     private NeighbourApiService mApiService;
+    private List<Neighbour> fNeighbours ;
+    private List<Neighbour> neighbours;
+    private RecyclerView mRecyclerView;
+
 
     //Référencement des mes items
     ImageView               mDetailImage;
@@ -42,6 +54,8 @@ public class Details_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Toolbar toolbar = findViewById(R.id.toolbar2);
+
+        mApiService = DI.getNeighbourApiService();
 
 
 
@@ -73,8 +87,15 @@ public class Details_Activity extends AppCompatActivity {
         //Récupération de l'image avec Glide
         Glide.with(this).load(mDetails.getAvatarUrl()).into(mDetailImage);
 
+        mFavoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                fNeighbours = mApiService.addFavorisNeighbour();
+                mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(fNeighbours));
 
+            }
+        });
 
         //Utilisation du bouton back pour revenir sur l'activity précédente (terminer l'activité en cours)
         mButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +104,15 @@ public class Details_Activity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
     }
+
+
+
+
 
 
 }
