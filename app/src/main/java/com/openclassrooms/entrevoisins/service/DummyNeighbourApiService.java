@@ -1,5 +1,10 @@
 package com.openclassrooms.entrevoisins.service;
 
+import android.support.design.widget.FloatingActionButton;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.List;
@@ -9,10 +14,15 @@ import java.util.List;
  */
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
+
+
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
 
     ///
     private List<Neighbour> fNeighbours = DummyNeighbourGenerator.generateFavorisNeighbours();
+    ///
+    private Neighbour fNeighbour;
+
 
 
     /**
@@ -27,7 +37,22 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public List<Neighbour> getFneighbours(){return fNeighbours;}
 
     ///Ajouter un favori dans ma liste de favoris
-    public void addFavorisNeighbour(Neighbour fNeighbour){fNeighbours.add(fNeighbour);}
+    public void addFavorisNeighbour(Neighbour neighbour) {
+
+        this.fNeighbour = neighbour;
+
+
+        if(fNeighbours.contains(fNeighbour)) {
+
+            return;
+
+        }else {
+
+            fNeighbours.add(neighbour);
+
+        }
+
+    }
 
     /**
      * {@inheritDoc}

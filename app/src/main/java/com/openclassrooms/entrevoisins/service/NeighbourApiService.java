@@ -20,7 +20,7 @@ public interface NeighbourApiService {
     List<Neighbour> getFneighbours();
 
     ///
-    void addFavorisNeighbour(Neighbour fNeighbour);
+    void addFavorisNeighbour(Neighbour neighbour);
 
     /**
      * Deletes a neighbour

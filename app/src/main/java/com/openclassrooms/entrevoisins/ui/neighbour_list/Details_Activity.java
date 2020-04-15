@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +30,9 @@ public class Details_Activity extends AppCompatActivity {
     private List<Neighbour> fNeighbours ;
     private List<Neighbour> neighbours;
     private RecyclerView mRecyclerView;
+    public Neighbour mNeighbour;
+    public Neighbour fNeighbour;
+
 
 
     //Référencement des mes items
@@ -56,6 +60,7 @@ public class Details_Activity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar2);
 
         mApiService = DI.getNeighbourApiService();
+
 
 
 
@@ -87,13 +92,13 @@ public class Details_Activity extends AppCompatActivity {
         //Récupération de l'image avec Glide
         Glide.with(this).load(mDetails.getAvatarUrl()).into(mDetailImage);
 
+
+
         mFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                fNeighbours = mApiService.addFavorisNeighbour(neighbours);
-                mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(fNeighbours));
-
+                mApiService.addFavorisNeighbour(mDetails);
             }
         });
 
@@ -109,10 +114,5 @@ public class Details_Activity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
 
 }
