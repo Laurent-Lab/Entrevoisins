@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -21,17 +23,19 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import java.util.EventListener;
 import java.util.List;
 
+import butterknife.BindDrawable;
 import butterknife.OnClick;
 
 public class Details_Activity extends AppCompatActivity {
 
+
     ///
     private NeighbourApiService mApiService;
-    private List<Neighbour> fNeighbours ;
-    private List<Neighbour> neighbours;
+    List<Neighbour> fNeighbours ;
+    List<Neighbour> neighbours;
     private RecyclerView mRecyclerView;
-    public Neighbour mNeighbour;
-    public Neighbour fNeighbour;
+    Neighbour mNeighbour;
+    Neighbour fNeighbour;
 
 
 
@@ -49,17 +53,19 @@ public class Details_Activity extends AppCompatActivity {
     TextView                mDescriptionTitle;
     TextView                mDescription;
     FloatingActionButton    mFavoriteButton;
+
     //Référencement d'une variable qui "contient" mes données
-    Neighbour               mDetails;
+    private Neighbour               mDetails;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Toolbar toolbar = findViewById(R.id.toolbar2);
-
         mApiService = DI.getNeighbourApiService();
+
 
 
 
@@ -77,7 +83,7 @@ public class Details_Activity extends AppCompatActivity {
         mDetailTitle1 = findViewById(R.id.detail_title_1);
         mDescriptionTitle = findViewById(R.id.description_title);
         mDescription = findViewById(R.id.description);
-        mFavoriteButton = findViewById(R.id.favorite_button);
+
 
         //Récupération de mes données
         Intent intent = getIntent();
@@ -88,9 +94,16 @@ public class Details_Activity extends AppCompatActivity {
         mDetailAdress.setText(mDetails.getAddress());
         mDetailTitle1.setText(mDetails.getName());
         mDescription.setText(mDetails.getAboutMe());
+        mDetailMail.setText(mDetails.getName()+"@gmail.com");
 
         //Récupération de l'image avec Glide
         Glide.with(this).load(mDetails.getAvatarUrl()).into(mDetailImage);
+
+
+
+        mFavoriteButton = findViewById(R.id.favorite_button);
+
+        changeStarGold();
 
 
 
@@ -99,6 +112,8 @@ public class Details_Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mApiService.addFavorisNeighbour(mDetails);
+                changeStarGold();
+
             }
         });
 
@@ -110,9 +125,25 @@ public class Details_Activity extends AppCompatActivity {
             }
         });
 
+    }
+    private void changeStarGold() {
+
+        this.fNeighbours = mApiService.getFneighbours();
 
 
+        if (fNeighbours.contains(mDetails)){
+            mFavoriteButton.setImageResource(R.drawable.ic_star_pink_24dp);
+        }else {
+            changeStarWhite();
+        }
 
+
+    }
+
+
+    private void changeStarWhite() {
+
+            mFavoriteButton.setImageResource(R.drawable.ic_star_black_24dp);
     }
 
 }

@@ -44,7 +44,8 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
         if(fNeighbours.contains(fNeighbour)) {
 
-            return;
+            fNeighbours.remove(neighbour);
+
 
         }else {
 
