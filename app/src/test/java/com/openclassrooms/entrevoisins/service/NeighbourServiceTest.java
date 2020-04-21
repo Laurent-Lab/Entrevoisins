@@ -30,7 +30,7 @@ public class NeighbourServiceTest {
         service = DI.getNewInstanceApiService();
     }
 
-    //Lister, ajouter un voisin un voisin
+    //Lister, ajouter un voisin un voisin /
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
