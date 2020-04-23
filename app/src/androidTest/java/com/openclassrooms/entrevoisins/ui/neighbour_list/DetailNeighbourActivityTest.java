@@ -25,32 +25,24 @@ import static android.support.test.espresso.contrib.RecyclerViewActions.actionOn
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ListNeighbourActivityDetails {
+public class DetailNeighbourActivityTest {
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule = new ActivityTestRule<>(ListNeighbourActivity.class);
-
+    //Je vérifie que ma nouvelle activitée est bien affichée au clique sur un voisin
     @Test
-    public void listNeighbourActivityDetails() {
+    public void detailNeighbourActivityTest() {
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),isDisplayed(),
                         withParent(withId(R.id.container))));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
-        //Vérifier si au clique sur le fragment à la position 0, la nouvelle vue affiche les données ciblées
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.detail_title_1), withText("Caroline"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.activity_profil_details),
-                                        0),
-                                0),
-                        isDisplayed()));
-        textView.check(matches(isDisplayed()));
+
+        ViewInteraction detailActivity = onView(withId(R.id.detail_title));
+        detailActivity.check(matches(withId(R.id.detail_title)));
     }
 
     private static Matcher<View> childAtPosition(
