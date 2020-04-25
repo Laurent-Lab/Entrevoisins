@@ -18,7 +18,6 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -54,7 +53,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
-
         //Ouverture de ma nouvelle activité au click sur le fragment de la liste
         //Création d'un putExtra pour référencer les données d'un neighbour
         holder.mFragmentDetails.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +64,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
             }
         });
-
 
     }
 

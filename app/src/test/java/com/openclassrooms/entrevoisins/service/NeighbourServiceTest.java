@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.service;
 
-import android.provider.ContactsContract;
-
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
@@ -37,7 +35,6 @@ public class NeighbourServiceTest {
         List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
-
     //Supprimer un voisin
     @Test
     public void deleteNeighbourWithSuccess() {
@@ -45,7 +42,6 @@ public class NeighbourServiceTest {
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
-
     //Ajouter un voisin dans la liste de favoris
     //Vérifier si le voisin est bien ajouté à la liste de favoris
     @Test
@@ -54,7 +50,6 @@ public class NeighbourServiceTest {
         service.addFavorisNeighbour(neighbourToAdd);
         assertTrue(service.getFneighbours().contains(neighbourToAdd));
     }
-
     //Vérifier si mon voisin ne fait plus partie des favoris lorsque l'on utilise à nouveau la méthode addFavorisNeighbour
     @Test
     public void deleteFneighbourWitchSucces() {
@@ -64,7 +59,6 @@ public class NeighbourServiceTest {
         service.addFavorisNeighbour(neighbourToDelete);
         assertFalse(service.getFneighbours().contains(neighbourToDelete));
     }
-
     //Ajouter une liste de voisins
     @Test
     public void getfNeighboursWithSucces(){

@@ -2,7 +2,6 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -25,10 +23,8 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -48,21 +44,10 @@ public class ListFavorisNeighboursAdded {
 
     @Test
     public void listFavorisNeighboursAdded() {
-        //Clique sur le voisin à la position 0 de la liste
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),isDisplayed(),
                         withParent(withId(R.id.container))));
         recyclerView.perform(actionOnItemAtPosition(0, click()));
-        //Le nom du voisin selectionné est bien affiché
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.detail_title), withText("Caroline"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.toolbar2),
-                                        0),
-                                2),
-                        isDisplayed()));
-        textView.check(matches(withText("Caroline")));
         //Clique sur le bouton de favoris
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.favorite_button),
@@ -142,10 +127,27 @@ public class ListFavorisNeighboursAdded {
         appCompatImageButton2.perform(click());
 
         onView(AllOf.allOf(ViewMatchers.withId(R.id.list_neighbours),isDisplayed()))
-                .check(withItemCount(ITEMS_COUNT-0));
+                .check(withItemCount(ITEMS_COUNT));
     }
 
-
+    @Test
+    public void displayNeighbours(){
+        //Clique sur le voisin à la position 0 de la liste
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.list_neighbours),isDisplayed(),
+                        withParent(withId(R.id.container))));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+        //Le nom du voisin selectionné est bien affiché
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.detail_title), withText("Caroline"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.toolbar2),
+                                        0),
+                                2),
+                        isDisplayed()));
+        textView.check(matches(withText("Caroline")));
+    }
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

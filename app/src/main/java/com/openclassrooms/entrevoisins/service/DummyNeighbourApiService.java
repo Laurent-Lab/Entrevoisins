@@ -1,12 +1,6 @@
 package com.openclassrooms.entrevoisins.service;
 
-import android.support.design.widget.FloatingActionButton;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-
 import java.util.List;
 
 /**
@@ -14,16 +8,11 @@ import java.util.List;
  */
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
-
-
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-
     ///
     private List<Neighbour> fNeighbours = DummyNeighbourGenerator.generateFavorisNeighbours();
     ///
     private Neighbour fNeighbour;
-
-
 
     /**
      * {@inheritDoc}
@@ -41,11 +30,9 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
         this.fNeighbour = neighbour;
 
-
         if(fNeighbours.contains(fNeighbour)) {
 
             fNeighbours.remove(neighbour);
-
 
         }else {
 

@@ -1,13 +1,10 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.os.Bundle;
-import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.widget.Button;
 
 import com.openclassrooms.entrevoisins.R;
 
@@ -40,12 +37,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mViewPager.setAdapter(mPagerAdapter);
 
         TabLayout.Tab tab = mTabLayout.getTabAt(1);
-
-
-
     }
-
-
 
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {

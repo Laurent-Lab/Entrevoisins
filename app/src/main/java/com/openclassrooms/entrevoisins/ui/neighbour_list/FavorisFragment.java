@@ -2,8 +2,6 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +20,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
-import java.util.zip.Inflater;
+
 
 public class FavorisFragment extends Fragment {
 
@@ -42,7 +40,6 @@ public class FavorisFragment extends Fragment {
         mApiService = DI.getNeighbourApiService();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +50,6 @@ public class FavorisFragment extends Fragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
-
     //Récupérer le contenu de ma nouvelle liste
     private void initList() {
         fNeighbours = mApiService.getFneighbours();
@@ -87,6 +83,4 @@ public class FavorisFragment extends Fragment {
         mApiService.deleteFneighbour(event.neighbour);
         initList();
     }
-
-
 }
