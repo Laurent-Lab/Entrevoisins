@@ -45,7 +45,7 @@ public class Neighbour implements Parcelable {
         this.aboutMe = aboutMe;
     }
 
-    //Création de parcel
+    //Création du constructeur d'un parcel
     private Neighbour(Parcel in) {
         id = in.readLong();
         name = in.readString();
