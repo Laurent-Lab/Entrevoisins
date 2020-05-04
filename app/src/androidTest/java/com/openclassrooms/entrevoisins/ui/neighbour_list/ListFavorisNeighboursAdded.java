@@ -89,7 +89,7 @@ public class ListFavorisNeighboursAdded {
                                 1),
                         isDisplayed()));
         viewPager.perform(swipeLeft());
-        //Je vérifie que le nom du voisin est le même que celui cliqué dans le détail
+
         ViewInteraction textView2 = onView(
                 allOf(withId(R.id.item_list_name), withText("Caroline"),
                         childAtPosition(
